@@ -1,0 +1,28 @@
+DROP DATABASE IF EXISTS zip;
+CREATE DATABASE zip;
+USE zip;
+
+CREATE TABLE light (
+ onrp	SMALLINT UNSIGNED NOT NULL,
+ zip_type TINYINT UNSIGNED NOT NULL,
+ zip SMALLINT UNSIGNED NOT NULL,
+ additional_digit TINYINT UNSIGNED NOT NULL,
+ place18 VARCHAR(18) NOT NULL,
+ place27 VARCHAR(27) NOT NULL,
+ canton CHAR(2) NOT NULL,
+
+ PRIMARY KEY(onrp)
+);
+
+LOAD DATA INFILE
+ '/workspace/Block_06/plz_l_20130819.txt'
+INTO TABLE
+ light
+CHARACTER SET
+ 'latin1'
+;
+
+SELECT
+ count(*)
+FROM
+ light;
